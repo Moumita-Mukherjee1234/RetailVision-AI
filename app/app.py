@@ -32,18 +32,18 @@ MODEL_DIR = BASE_DIR / "models"
 # ------------------------------
 @st.cache_data(show_spinner="Loading datasets...")
 def load_data():
-    raw_zip = DATA_DIR / "raw" / "OnlineRetail_clean.zip"
+    raw_csv = DATA_DIR / "raw" / "OnlineRetail_clean.csv"
     feat_path = DATA_DIR / "features" / "customer_features.csv"
     cluster_path = DATA_DIR / "features" / "customer_clusters.csv"
 
     # ---- Safety checks ----
-    for path in [raw_zip, feat_path, cluster_path]:
+    for path in [raw_csv, feat_path, cluster_path]:
         if not path.exists():
             st.error(f"❌ Missing file: {path}")
             st.stop()
 
     # ---- Load data ----
-    retail = pd.read_csv(raw_zip, compression="zip")
+    retail = pd.read_csv(raw_csv)
     customer_features = pd.read_csv(feat_path)
     customer_clusters = pd.read_csv(cluster_path)
 
@@ -59,22 +59,19 @@ def load_data():
 @st.cache_resource(show_spinner="Loading models...")
 def load_models():
     model_path = MODEL_DIR / "predictor_rf.joblib"
-    scaler_path = MODEL_DIR / "scaler_rfm.joblib"
 
-    if not model_path.exists() or not scaler_path.exists():
-        st.error("❌ Model or scaler file missing")
+    if not model_path.exists():
+        st.error("❌ Model file missing")
         st.stop()
 
     rf_model = joblib.load(model_path)
-    scaler = joblib.load(scaler_path)
 
-    return rf_model, scaler
-
+    return rf_model
 # ------------------------------
 # INITIAL LOAD
 # ------------------------------
 retail, customer_features, customer_clusters = load_data()
-rf_model, scaler = load_models()
+rf_model = load_models()
 
 # ------------------------------
 # SIDEBAR NAVIGATION
@@ -200,37 +197,55 @@ elif page == "RFM Analysis":
 # CUSTOMER PREDICTION
 # ==============================
 elif page == "Customer Prediction":
-    st.title("🎯 Customer Value Prediction")
+    st.title("🎯 Purchase Prediction")
 
     st.markdown("Enter customer RFM values:")
 
-    r = st.number_input("Recency (days since last purchase)", min_value=0.0)
-    f = st.number_input("Frequency (number of purchases)", min_value=0.0)
-    m = st.number_input("Monetary (total spend)", value=0.0)
+    r = st.number_input(
+        "Recency (days since last purchase)",
+        min_value=0.0
+    )
+
+    f = st.number_input(
+        "Frequency (number of purchases)",
+        min_value=0.0
+    )
+
+    m = st.number_input(
+        "Monetary (total spend)",
+        min_value=0.0
+    )
 
     if st.button("Predict"):
         try:
-            input_df = pd.DataFrame(
-                {
-                    "recency_days": [r],
-                    "frequency": [f],
-                    "monetary": [m],
-                }
+
+            input_df = pd.DataFrame({
+                "recency_days": [r],
+                "frequency": [f],
+                "monetary": [m]
+            })
+
+            prediction = rf_model.predict(input_df)[0]
+
+            confidence = rf_model.predict_proba(
+                input_df
+            ).max()
+
+            label = (
+                "Likely To Purchase"
+                if prediction == 1
+                else "Not Likely To Purchase"
             )
 
-            input_scaled = scaler.transform(input_df)
-            prediction = rf_model.predict(input_scaled)[0]
-            confidence = rf_model.predict_proba(input_scaled).max()
-
-            label = "High Value Customer" if prediction == 1 else "Low Value Customer"
-
             st.success(f"Prediction: {label}")
-            st.info(f"Confidence: {confidence:.2%}")
+
+            st.info(
+                f"Confidence: {confidence:.2%}"
+            )
 
         except Exception as e:
             st.error("Prediction failed.")
             st.exception(e)
-
 # ==============================
 # BUSINESS INSIGHTS
 # ==============================
