@@ -693,7 +693,7 @@ div.stButton > button:hover {
 /* File uploader button */
 [data-testid="stFileUploader"] button {
     background-color: #000000 !important;
-    color: #FFFFFF !important;
+    color: #000000 !important;
     border: 1px solid #000000 !important;
 }
 
