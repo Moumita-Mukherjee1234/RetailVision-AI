@@ -569,7 +569,7 @@ def show_prediction(rf_model):
         
             with col4:
                 st.markdown("### 💡 Recommended Actions")
-                st.markdown("<br>")
+                st.markdown(" ")
 
                 recommendations = []
 

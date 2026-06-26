@@ -690,3 +690,56 @@ div.stButton > button:hover {
     color: #4d586d !important;
     margin-bottom: 8px !important;
 }
+/* File uploader button */
+[data-testid="stFileUploader"] button {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #000000 !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+    background-color: #222222 !important;
+    color: #FFFFFF !important;
+}
+/* Closed selectbox */
+div[data-baseweb="select"] > div {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #000000 !important;
+}
+
+/* Text inside selectbox */
+div[data-baseweb="select"] span {
+    color: #FFFFFF !important;
+}
+
+/* Dropdown arrow */
+div[data-baseweb="select"] svg {
+    fill: #FFFFFF !important;
+}
+/* Search input when dropdown opens */
+div[data-baseweb="popover"] input {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    caret-color: #FFFFFF !important;
+}
+
+/* Placeholder */
+div[data-baseweb="popover"] input::placeholder {
+    color: #CCCCCC !important;
+}
+/* Dropdown list */
+div[role="listbox"] {
+    background-color: #000000 !important;
+}
+
+/* Each option */
+div[role="option"] {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Hovered option */
+div[role="option"]:hover {
+    background-color: #333333 !important;
+}
