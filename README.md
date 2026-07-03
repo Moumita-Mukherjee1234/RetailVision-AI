@@ -209,19 +209,19 @@ The uploaded dataset should contain:
 
 ### Overview Dashboard
 
-![Overview](images/overview.png)
+![Overview](images/Overviewpage.png)
 
 ### Customer Segmentation
 
-![Segmentation](images/segmentation.png)
+![Segmentation](images/customer_analysis.png)
 
 ### Customer Prediction
 
-![Prediction](images/prediction.png)
+![Prediction](images/prediction_page.png)
 
 ### Business Insights
 
-![Insights](images/insights.png)
+![Insights](images/rfm_page.png)
 
 ---
 
