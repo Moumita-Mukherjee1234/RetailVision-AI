@@ -226,7 +226,7 @@ def show_prediction(rf_model):
         padding: 8px 10px !important;
         font-size: 15px !important;
         font-weight: 600 !important;
-        color: #FFFFFF !important;
+        color: black !important;
         transition: all 0.25s ease;
     }
     

@@ -714,18 +714,18 @@ div[data-baseweb="select"] > div {
 
 /* Text inside selectbox */
 div[data-baseweb="select"] span {
-    color: #FFFFFF !important;
+    color: #000000 !important;
 }
 
 /* Dropdown arrow */
 div[data-baseweb="select"] svg {
-    fill: #FFFFFF !important;
+    fill: #000000 !important;
 }
 /* Search input when dropdown opens */
 div[data-baseweb="popover"] input {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    caret-color: #FFFFFF !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    caret-color: #000000 !important;
 }
 
 /* Placeholder */
