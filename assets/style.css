@@ -114,9 +114,9 @@ section[data-testid="stSidebar"] {
         1px solid rgba(255,255,255,0.10);
 }
 
-section[data-testid="stSidebar"] * {
+section[data-testid="stSidebar"]  {
 
-    color: white !important;
+    color: white ;
 }
 
 /* ==================================
@@ -707,19 +707,18 @@ div.stButton > button:hover {
 }
 /* Closed selectbox */
 div[data-baseweb="select"] > div {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    border: 1px solid #000000 !important;
+    background-color: #FFFFFF !important;
+    border: 1px solid #D8CFF2 !important;
 }
 
-/* Text inside selectbox */
+/* Selected text */
 div[data-baseweb="select"] span {
-    color: #000000 !important;
+    color: #2A2A2A !important;
 }
 
 /* Dropdown arrow */
 div[data-baseweb="select"] svg {
-    fill: #000000 !important;
+    fill: #2A2A2A !important;
 }
 /* Search input when dropdown opens */
 div[data-baseweb="popover"] input {
@@ -734,16 +733,16 @@ div[data-baseweb="popover"] input::placeholder {
 }
 /* Dropdown list */
 div[role="listbox"] {
-    background-color: #000000 !important;
+    background-color: #FFFFFF !important;
 }
 
 /* Each option */
 div[role="option"] {
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #2A2A2A !important;
 }
 
-/* Hovered option */
+/* Hover */
 div[role="option"]:hover {
-    background-color: #333333 !important;
+    background-color: #F5F5F5 !important;
 }
